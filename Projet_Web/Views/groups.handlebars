@@ -1,0 +1,45 @@
+{{! groups.handlebars }}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remindr - Tableau de bord</title>
+  <link rel="stylesheet" type="text/css" href="/Static/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&display=swap"
+      rel="stylesheet"
+    />
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <h1>Remindr - Groupes</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="/dashboard">Accueil</a></li>
+        <li><a href="/dashboard/deconnexion">Déconnexion</a></li>
+      </ul>
+    </nav>
+  </header>
+
+<main>
+    <form action="/groups/createGroup" method="post">
+  <h2>Nom du groupe :</h2>
+  <input type="text" id="groupName" name="groupName" placeholder="Nom du nouveau groupe" required>
+
+  <label for="usernames">Utilisateurs :</label>
+  <input type="text" id="usernames" name="usernames" placeholder="Nom des membres (incluez-vous !)" required>
+
+  <button class="button-groupe" type="submit">Créer le groupe</button>
+</form>
+</main>
+    <footer>
+        <p>&copy; 2023 Remindr. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>
