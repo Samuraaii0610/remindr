@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remindr</title>
+  <link rel="stylesheet" type="text/css" href="/Static/styles.css" />
+  <script src="/Static/main.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <h1>Remindr</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="/groups">Créer un groupe</a></li>
+        <li><a href="/dashboard/deconnexion">Déconnexion</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+<div id="groups">
+  {{#each groups}}
+    <div class="group-container">
+      <h2>{{name}}</h2>
+      <ul class="members-list">
+        <li>Membres : {{this.members.length}}</li>
+        {{#each this.members}}
+          <li>{{this.name}}</li>
+        {{/each}}
+      </ul>
+      <h3>Rappels :</h3>
+      <ulclass="reminder-text">
+        {{log this.Reminds}}  {{!-- Ajoutez ce journal de débogage pour les rappels --}}
+        {{#each this.Reminds}}
+          <div class="{{#if (isPastDate this.limit_date)}}past-reminder{{/if}} reminder-content">
+            <span class="color-band" style="background-color: {{this.color}};"></span>
+            <p >
+              Nom du rappel : {{this.name}} <br><br>
+              Description : {{this.bio}} <br><br>
+              Date d'échéance : {{formatDate this.end_date}} <br><br>
+            </p>
+            {{log this.id_Remind}} <!-- Change this line -->
+                <button class="edit-reminder" data-id="{{this.id_Remind}}">Modifier</button> <!-- And this line -->
+                <button class="delete-reminder" data-id="{{this.id_Remind}}">Supprimer</button> <!-- And this line -->
+          </div>
+        {{/each}}
+      </ulclass=>
+      <!-- Si l'ID du groupe est stocké dans une propriété appelée "id_Group" -->
+      <a href="/dashboard/groups/{{this.id_Group}}/reminders" class="button-add-remiders" >Ajouter un rappel</a>
+    </div>
+  {{/each}}
+</div>
+
+  <footer>
+    <p>&copy; 2023 Remindr. Tous droits réservés.</p>
+  </footer>
+</body>
+</html>
